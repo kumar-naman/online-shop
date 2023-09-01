@@ -1,0 +1,131 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<!-- content part -->
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap" id="bread-crum">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item active">product list</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        
+        
+        <!-- Product List Start -->
+        <div class="product-view">
+            <div class="container">
+                <div class="row">
+                <!-- product start -->
+
+                    <div class="col-md-10">
+                        <table id="example" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in shop %} 
+                                <tr class="shoptable">
+                                    <td>
+                                        <div class="row">
+                                            <div class='col-lg-12'>
+                                                <div class='product-item'>
+                                                    <div class='product-image'>
+                                                        <a href="{% url 'product' product.id %}">
+                                                            <img src='../{{MEDIA_ROOT}}{{product.Product_img}}' alt='Product Image'>
+                                                        </a>
+                                                        <div class='product-action'>
+                                                            <input type="hidden" value="{{product.id}}" id="pid">
+                                                            <input type="hidden" value="1" id="qunt">
+                                                            <a href="{% url 'addcard' product.id %}"><i class='fa fa-cart-plus'></i></a>
+                                                            <a href="{% url 'whishlist2' product.id %}"><i class='fa fa-heart'></i></a>
+                                                            <a href="{% url 'product' product.id %}"><i class='fa fa-eye'></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class='product-content'>
+                                                        <div class='title'><a href='#'>{{product.Product_name}}</a></div>
+                                                        <div class='title'><a href='#'>{{product.Product_Short_Description}}</a></div>
+                                                        <div class='ratting'>
+                                                            <i class='fa fa-star'></i>
+                                                            <i class='fa fa-star'></i>
+                                                            <i class='fa fa-star'></i>
+                                                            <i class='fa fa-star'></i>
+                                                            <i class='fa fa-star'></i>
+                                                        </div>
+                                                        <div class='price'>₹ {{product.Product_Discount_price}}<span>₹ {{product.Product_Price}}</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                            </tfoot>
+                    </table>
+                            
+                    </div>
+                    
+                    <!-- product and -->
+                    
+                    <div class="col-md-2">
+                        <div class="sidebar-widget category">
+                            <h2 class="title">Category</h2>
+                            <ul>
+                                <li><a href="#">Lorem Ipsum</a><span>(83)</span></li>
+                                <li><a href="#">Cras sagittis</a><span>(198)</span></li>
+                                <li><a href="#">Vivamus</a><span>(95)</span></li>
+                                <li><a href="#">Fusce vitae</a><span>(48)</span></li>
+                                <li><a href="#">Vestibulum</a><span>(210)</span></li>
+                                <li><a href="#">Proin phar</a><span>(78)</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="sidebar-widget image">
+                            <h2 class="title">Featured Product</h2>
+                            <a href="#">
+                                <img src="assets/froentent/img/category-1.jpg" alt="Image">
+                            </a>
+                        </div>
+                        
+                        <div class="sidebar-widget brands">
+                            <h2 class="title">Our Brands</h2>
+                            <ul>
+                                <li><a href="#">Nulla </a><span>(45)</span></li>
+                                <li><a href="#">Curabitur </a><span>(34)</span></li>
+                                <li><a href="#">Nunc </a><span>(67)</span></li>
+                                <li><a href="#">Ullamcorper</a><span>(74)</span></li>
+                                <li><a href="#">Fusce </a><span>(89)</span></li>
+                                <li><a href="#">Sagittis</a><span>(28)</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="sidebar-widget tag">
+                            <h2 class="title">Tags Cloud</h2>
+                            <a href="#">Lorem ipsum</a>
+                            <a href="#">Vivamus</a>
+                            <a href="#">Phasellus</a>
+                            <a href="#">pulvinar</a>
+                            <a href="#">Curabitur</a>
+                            <a href="#">Fusce</a>
+                            <a href="#">Sem quis</a>
+                            <a href="#">Mollis metus</a>
+                            <a href="#">Sit amet</a>
+                            <a href="#">Vel posuere</a>
+                            <a href="#">orci luctus</a>
+                            <a href="#">Nam lorem</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product List End -->
+{% endblock %}

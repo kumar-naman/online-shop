@@ -1,0 +1,219 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcrumb-wrap product-warop-product">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Checkout</a></li>
+            <li class="breadcrumb-item active">Checkout details</li>
+        </ul>
+    </div>
+</div>
+<div class="checkout">
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-7">
+            <div class="billing-address">
+                <h2>Billing Address</h2>
+                <form action="/order/" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>User Id</label>
+                            <input class="form-control" name="userid" type="text" value="{{user.id}}" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Username"</label>
+                            <input class="form-control" name="username" type="text" value="{{user.username }}" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>E-mail</label>
+                            <input class="form-control" name="email" type="text" value="{{ user.email }}" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mobile No</label>
+                            <input class="form-control" name="phone" type="text" placeholder="Mobile No" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>Address</label>
+                            <input class="form-control" name="address" type="text" placeholder="Address" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Country</label>
+                            <select class="custom-select" name="country">
+                                <option selected>United States</option>
+                                <option>Afghanistan</option>
+                                <option>Albania</option>
+                                <option>Algeria</option>
+                                <option>Canada</option>
+                                <option>Dubai</option>
+                                <option>India</option>
+                       
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>City</label>
+                            <input class="form-control" name="city" type="text" placeholder="City" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>State</label>
+                            <input class="form-control" name="state" type="text" placeholder="State" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>ZIP Code</label>
+                            <input class="form-control" name="zipcode" type="text" placeholder="ZIP Code" />
+                        </div>
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="newaccount" />
+                                <label class="custom-control-label" for="newaccount">Create an account</label>
+                            </div>
+                        </div>
+                
+                    <div class="col-md-12">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="shipto" />
+                            <label class="custom-control-label" for="shipto">Ship to different address</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shipping-address">
+                <h2>Shipping Address</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>First Name</label>
+                        <input class="form-control" type="text" placeholder="First Name" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Last Name"</label>
+                        <input class="form-control" type="text" placeholder="Last Name" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>E-mail</label>
+                        <input class="form-control" type="text" placeholder="E-mail" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Mobile No</label>
+                        <input class="form-control" type="text" placeholder="Mobile No" />
+                    </div>
+                    <div class="col-md-12">
+                        <label>Address</label>
+                        <input class="form-control" type="text" placeholder="Address" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Country</label>
+                        <select class="custom-select">
+                            <option selected>United States</option>
+                            <!-- <option>Afghanistan</option>
+                            <option>Albania</option>
+                            <option>Algeria</option> -->
+                            <option>Canada</option>
+                            <option>Dubai</option>
+                            <option>India</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>City</label>
+                        <input class="form-control" type="text" placeholder="City" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>State</label>
+                        <input class="form-control" type="text" placeholder="State" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>ZIP Code</label>
+                        <input class="form-control" type="text" placeholder="ZIP Code" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="checkout-summary">
+                <h2>Cart Total</h2>
+                <div class="checkout-content">
+                    <h3>Products</h3>
+                    {% for product in x.cart %} 
+                    <p>{{product.Product_name}}<span>{{product.Product_Discount_price}}</span></p>
+                    <!-- <p>Product Name<span>$11</span></p>
+                    <p>Product Name<span>$11</span></p>
+                    <p>Product Name<span>$11</span></p> -->
+                    {% endfor %}
+                    <p class="sub-total">Sub Total<span>{{ x.cartprice }}</span></p>
+                    <p class="ship-cost">Shipping Cost<span>40</span></p>
+                    <h4>Grand Total<span>{{ x.total }}</span></h4>
+                </div>
+            </div>
+            
+            <div class="checkout-payment">
+                <h2>Payment Methods</h2>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="payment-1" name="payment"  value="cash on delivery" />
+                            <label class="custom-control-label" for="payment-1">Cash On Delivery</label>
+                        </div>
+                        <!-- <div class="payment-content" id="payment-1-show">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                            </p>
+                        </div> -->
+                    </div>
+                    <div class="payment-method">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="payment-2" name="payment"  value="credit/debit card" />
+                            <label class="custom-control-label" for="payment-2">Credit/Debit Card</label>
+                        </div>
+                        <!-- <div class="payment-content" id="payment-2-show">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                            </p>
+                        </div> -->
+                    </div>
+                    <div class="payment-method">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="payment-3" name="payment" value="phonepay/upi" />
+                            <label class="custom-control-label" for="payment-3">Phonepe/UPI</label>
+                        </div>
+                        <!-- <div class="payment-content" id="payment-3-show">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                            </p>
+                        </div> -->
+                    </div>
+                    <div class="payment-method">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="payment-4" name="payment" value="paytm" />
+                            <label class="custom-control-label" for="payment-4">Paytm</label>
+                        </div>
+                        <!-- <div class="payment-content" id="payment-4-show">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                            </p>
+                        </div> -->
+                    </div>
+                    <div class="payment-method">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="payment-5" name="payment" value="netbanking" />
+                            <label class="custom-control-label" for="payment-5">Net Banking</label>
+                        </div>
+                        <!-- <div class="payment-content" id="payment-5-show">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                            </p>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="checkout-btn">
+                    <div><input type="submit" name="submit" id="submit" value="Place Order" /></div>
+                    <!-- <button tpye="submit">Place Order</button> -->
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

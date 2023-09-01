@@ -1,0 +1,80 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcrumb-wrap product-warop-product">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Register</a></li>
+            <li class="breadcrumb-item active">Register details</li>
+        </ul>
+    </div>
+</div>
+
+<div class="contact">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-7">
+    <div class="form">
+    <h3>Register And Get in Touch</h3>
+        <form id="registergform" action="/regdata/" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <input type="text" name="fname" class="form-control" placeholder="First Name" required/>
+                </div>
+                <div class="form-group col-lg-6">
+                    <input type="text" name="lname" class="form-control" placeholder="Last Name" required/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <input type="text" name="username" class="form-control" placeholder="username (don,t use space)" required/>
+                </div>
+                <div class="form-group col-lg-6">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email" required/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required/>
+                </div>
+                <div class="form-group col-lg-6">
+                    <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password" required />
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <textarea class="form-control" name="message" rows="2" placeholder="Message"></textarea>
+            </div> -->
+            {% for message in messages %}
+                <div>{{ message }}</div>          
+            {% endfor %}
+            <div><input type="submit" name="submit" id="submit" value="Register Now" /></div>
+        </form>
+    </div>
+</div>
+<div class="col-md-5">
+    <div class="contact-info">
+        <div class="section-header">
+            <h3>Register Here</h3>
+            <p>
+                We are able to draft your special day as an unforgettable day of your life.
+                                We carry a vast selection of fine gifts and collectibles..
+            </p>
+        </div>
+        <h4><i class="fa fa-map-marker"></i>Namdev Nagar, BATHINDA</h4>
+        <h4><i class="fa fa-envelope"></i>Pretty741singla@gmail.com</h4>
+        <h4><i class="fa fa-phone"></i>+91 8054088382,9788500053</h4>
+        <div class="social">
+            <a href=""><i class="fa fa-twitter"></i></a>
+            <a href=""><i class="fa fa-facebook"></i></a>
+            <a href=""><i class="fa fa-linkedin"></i></a>
+            <a href=""><i class="fa fa-instagram"></i></a>
+            <a href=""><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

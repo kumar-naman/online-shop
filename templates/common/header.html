@@ -1,0 +1,159 @@
+{% load static %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} text-center"
+    style="background-color: rgb(231, 131, 151); z-index:999;" role="alert">
+     {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+ <!-- header start -->
+ <header class="header" id="header2">
+    <div class="container">
+        <div class="row v-center">
+            <div class="header-item item-left">
+                <div class="logo">
+                    <a href="/"><i class='fas fa-hat-cowboy-side' size=""></i>Online-Shop</a>
+                </div>
+            </div>
+            <!-- menu start here -->
+            <div class="header-item item-center">
+                <div class="menu-overlay">
+                </div>
+                <nav class="menu">
+                    <div class="mobile-menu-head">
+                        <div class="go-back"><i class="fa fa-angle-left"></i></div>
+                        <div class="current-menu-title"></div>
+                        <div class="mobile-menu-close">&times;</div>
+                    </div>
+                    <ul class="menu-main">
+                        <li class="menu-item-has-children">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Products <i class="fa fa-angle-down"></i></a>
+                            <div class="sub-menu mega-menu mega-menu-column-4">
+                                <div class="list-item">
+                                    <h4 class="title">Get up to 50% off</h4>
+                                    <ul class="submenuullist">
+                                        <a href="#">
+                                            <img src="{% static 'img/product-4.png' %}" height="200px" alt="Product Image">
+                                            </a>
+                                    </ul>
+                                </div>
+                                <div class="list-item">
+                                    <h4 class="title">Get up to 60% off</h4>
+                                    <ul class="submenuullist">
+                                        <a href="#">
+                                            <img src="{% static 'img/product-1.png' %}" height="200px" alt="Product Image">
+                                            </a>
+                                    </ul>
+                                </div>
+                                <div class="list-item">
+                                    <h4 class="title">Get up to 70% off</h4>
+                                    <ul class="submenuullist">
+                                        <a href="#">
+                                            <img src="{% static 'img/product-5.png' %}" height="200px" alt="Product Image">
+                                            </a>
+                                    </ul>
+                                </div>
+                                <div class="list-item ">
+                                <h4 class="title">Get up to 80% off</h4>
+                                    <ul class="submenuullist">
+                                        <a href="#">
+                                        <img src="{% static 'img/product-6.png' %}" height="200px" alt="Product Image">
+                                        </a>
+                                   </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="/shop/">SHOP</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Collections <i class="fa fa-angle-down"></i></a>
+                            <div class="sub-menu mega-menu mega-menu-column-4">
+                              <div class="list-item">
+                                    <h4 class="title">Womens Collection</h4>
+                                    <ul class="submenuullist">
+                                         <li><a href="#">Top</a></li>
+                                         <li><a href="#">Shoes</a></li>
+                                         <li><a href="#">Jaweelery</a></li>
+                                         <li><a href="#">jeans</a></li>
+                                         <li><a href="#">Googles</a></li>
+                                         <li><a href="#">Know More</a></li>
+                                    </ul>
+                              </div>
+                              <div class="list-item">
+                                  <h4 class="title">Men's Collection</h4>
+                                  <ul class="submenuullist">
+                                        <li><a href="#">T-shirt</a></li>
+                                        <li><a href="#">Shoes</a></li>
+                                        <li><a href="#">Jacket</a></li>
+                                        <li><a href="#">jeans</a></li>
+                                        <li><a href="#">Googles</a></li>
+                                        <li><a href="#">Know More</a></li>
+                                    </ul>
+                              </div>
+                              <div class="list-item">
+                                  <h4 class="title">Kids Collection</h4>
+                                  <ul class="submenuullist">
+                                    <li><a href="#">Winter Cloths</a></li>
+                                    <li><a href="#">Shoes</a></li>
+                                    <li><a href="#">Summer Cloths</a></li>
+                                    <li><a href="#">jeans</a></li>
+                                    <li><a href="#">Googles</a></li>
+                                    <li><a href="#">Know More</a></li>                                         
+                                    </ul>
+                              </div>
+                              <div class="list-item">
+                                <h4 class="title">Get up to 50% off</h4>
+                                <ul class="submenuullist">
+                                    <a href="#">
+                                        <img src="{% static 'img/product-6.png' %}" height="200px" alt="Product Image">
+                                    </a>
+                                  </ul>
+                              </div>
+                            </div>
+                        </li>
+                                           
+                        <li>
+                            <a href="/about/" class="last-menuicom">About us</i></a>
+                        </li>
+                        <li>
+                            <a href="/myacc/" class="last-menuicom">My Account</i></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- menu end here -->
+            <div class="header-item item-right">
+                {% if user.is_authenticated %}
+                <a href='/logout/' title='logout'>LOGOUT</a>
+                {% else %}
+                <a href='/login/' title='login'><i class='fa fa-sign-in'></i></a>
+                <a href='/register/' title='register'><i class='fa fa-user-plus fa-beat'></i></a>  
+                {% endif %}   
+                <span></span>
+                {% if user.is_authenticated %}
+                <a href="/wishlist/" class="qntitilink"><i class="far fa-heart"></i><i class="quntity">{{ request.session.wishcount }}</i></a>
+                <a href="/cart/" class="qntitilink"><i class="fas fa-shopping-cart"></i><i class="quntity">{{ request.session.cartcount }}</i></a>
+                {% else %}
+                <a href="/wishlist/" class="qntitilink"><i class="far fa-heart"></i><i class="quntity">0</i></a>
+                <a href="/cart/" class="qntitilink"><i class="fa fa-shopping-cart fa-bounce"></i><i class="quntity">0</i></a>
+                {% endif %} 
+
+                <!-- mobile menu trigger -->
+                <div class="mobile-menu-trigger">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header end -->

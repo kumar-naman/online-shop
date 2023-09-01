@@ -1,0 +1,76 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcrumb-wrap product-warop-product">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Cart</a></li>
+            <li class="breadcrumb-item active">Cart details</li>
+        </ul>
+    </div>
+</div>
+
+<div class="cart-page">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        {% for product in cart.cart %}
+                        <tr>
+                            <td><a href="#"><img src="{{MEDIA_ROOT}}../{{product.Product_img}}" alt="Image" /></a></td>
+                            <td><a href="#">{{product.Product_name}}</a></td>
+                            <td>₹ {{product.Product_Discount_price}}</td>
+                            <td>
+                                <div class="qty">
+                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                    <input type="text" value="1" />
+                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </td>
+                            <td>₹ {{product.Product_Discount_price}}</td>
+                            <td><button><a id="fafaicons"  href="{% url 'adddel' product.Product_id %}"><i class="fa fa-trash"></i></a></button></td>
+                        </tr> 
+                        {% endfor %}                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="coupon">
+                <input type="text" placeholder="Coupon Code" />
+                <button>Apply Code</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="cart-summary">
+                <div class="cart-content">
+                    <h3>Cart Summary</h3>
+                    <p>Sub Total<span>₹{{ cart.cartprice }}</span></p>
+                    <p>Shipping Cost<span>₹ 40</span></p>
+                    <h4>Grand Total<span>₹ {{ cart.total }}</span></h4>
+                </div>
+                <div class="cart-btn">
+                    <button><a href="/">Update Cart</a></button>
+                    <button><a href="/checkout/" class="checkoutcart" style="color:white ;">Checkout</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
